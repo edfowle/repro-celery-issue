@@ -23,7 +23,7 @@ services:
     build:
       context: ./src
       dockerfile: ../consumer.dockerfile
-    entrypoint: 'celery -A test worker'
+    entrypoint: 'celery -A test worker --loglevel INFO'
     volumes:
       - logs:/var/log
     networks:
