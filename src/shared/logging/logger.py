@@ -8,14 +8,10 @@ setup_complete = False
 def setup(path, level=logging.INFO):
     global setup_complete
     
-    info("configuring logging")
-    if(setup_complete):
-        info("already set up!")
-        return
-    setup_complete = True
-    os.makedirs(str(Path(path).parent), exist_ok=True)
-    logging.basicConfig(filename=path, level=logging.INFO)
+    if(not setup_complete):
+        setup_complete = True
+        os.makedirs(str(Path(path).parent), exist_ok=True)
+        logging.basicConfig(filename=path, level=level)
 
 def info(message):
     logging.info(f'{datetime.datetime.now()}: {message}')
-
