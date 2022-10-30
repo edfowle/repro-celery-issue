@@ -6,3 +6,5 @@ COPY . .
 
 RUN pip install -r consumer/requirements.txt
 ENV PYTHONPATH "${PYTHONPATH}:$APP_PATH"
+
+WORKDIR "$APP_PATH/shared/tasks"
