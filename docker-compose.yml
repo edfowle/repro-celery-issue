@@ -13,7 +13,7 @@ services:
   consumer:
     build:
       context: ./consumer
-      image: ../consumer.dockerfile
+      dockerfile: ../consumer.dockerfile
     entrypoint: 'python ./main.py'
     volumes:
       - logs:/var/log
@@ -29,4 +29,4 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /var/log/test
+      device: /var/log
