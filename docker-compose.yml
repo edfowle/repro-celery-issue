@@ -10,11 +10,11 @@ services:
       - redis
     environment:
       - LOG_NAME=redis
-  consumer:
+  producer:
     build:
-      context: ./consumer
-      dockerfile: ../consumer.dockerfile
-    entrypoint: 'python ./main.py'
+      context: ./src
+      dockerfile: ../producer.dockerfile
+    entrypoint: 'python ./producer/main.py'
     volumes:
       - logs:/var/log
     networks:
