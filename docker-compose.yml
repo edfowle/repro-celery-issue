@@ -1,0 +1,32 @@
+version: '2.2'
+services:
+  redis:
+    image: redis:5.0-alpine
+    restart: always
+    volumes:
+      - redis:/data
+      - logs:/var/log
+    networks:
+      - redis
+    environment:
+      - LOG_NAME=redis
+  consumer:
+    build:
+      context: ./consumer
+      image: ../consumer.dockerfile
+    entrypoint: 'python ./main.py'
+    volumes:
+      - logs:/var/log
+    networks:
+      - redis
+
+networks:
+  redis:
+
+volumes:
+  redis:
+  logs:
+    driver_opts:
+      type: none
+      o: bind
+      device: /var/log/test
