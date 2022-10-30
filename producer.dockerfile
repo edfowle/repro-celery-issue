@@ -5,3 +5,4 @@ WORKDIR /opt/test
 COPY / .
 
 RUN pip install -r producer/requirements.txt
+RUN export PYTHONPATH="${PYTHONPATH}:${PWD}"
