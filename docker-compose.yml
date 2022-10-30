@@ -19,6 +19,15 @@ services:
       - logs:/var/log
     networks:
       - redis
+  consumer:
+    build:
+      context: ./src
+      dockerfile: ../consumer.dockerfile
+    entrypoint: 'celery -A consumer.main worker'
+    volumes:
+      - logs:/var/log
+    networks:
+      - redis
 
 networks:
   redis:
