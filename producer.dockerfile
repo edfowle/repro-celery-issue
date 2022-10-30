@@ -1,8 +1,8 @@
 FROM python:3.7-stretch
+ENV APP_PATH=/opt/test
+WORKDIR $APP_PATH
 
-WORKDIR /opt/test
-
-COPY / .
+COPY . .
 
 RUN pip install -r producer/requirements.txt
-RUN export PYTHONPATH="${PYTHONPATH}:${PWD}"
+ENV PYTHONPATH "${PYTHONPATH}:$APP_PATH"
