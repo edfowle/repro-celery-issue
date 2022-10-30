@@ -7,9 +7,6 @@ app = celery.Celery('tasks', broker=BROKER_URL, backend=BACKEND_URL, )
 
 logger.setup('/var/log/repro_celeryissue/tasks.test.log')
 
-@app.task(name='Add two numbers')
+@app.task(name='Throw an unhandled exception')
 def add(x, y):
-    logger.info('started task')
-    result = x + y
-    logger.info('finished task')
-    return result
+    raise Exception("oops")
