@@ -19,6 +19,8 @@ services:
       - logs:/var/log
     networks:
       - redis
+    cap_add:
+      - SYS_PTRACE
   consumer:
     build:
       context: ./src

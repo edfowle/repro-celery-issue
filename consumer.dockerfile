@@ -7,4 +7,7 @@ COPY . .
 RUN pip install -r consumer/requirements.txt
 ENV PYTHONPATH "${PYTHONPATH}:$APP_PATH"
 
+RUN apt update
+RUN apt install strace
+
 WORKDIR "$APP_PATH/shared/tasks"
