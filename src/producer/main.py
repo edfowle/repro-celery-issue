@@ -9,7 +9,7 @@ loggingWrapper.logger.info(f'queueing {n} tasks')
 
 i = 0
 while i < n:
-  result = test.process.delay(n)
+  result = test.process.delay(i)
   i += 1
 
 loggingWrapper.logger.info('tasks queued')
