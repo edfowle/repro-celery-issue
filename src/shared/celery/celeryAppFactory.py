@@ -3,6 +3,7 @@ from celery.signals import after_setup_logger
 from shared.logging import loggingWrapper
 import os
 import logging
+from pathlib import Path
 
 setupLogPath = None
 
@@ -18,7 +19,7 @@ def setup_loggers(logger, **kwargs):
     loggingWrapper.setupCustom(logger)
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     
-    os.makedirs(str(Path(path).parent), exist_ok=True)
+    os.makedirs(str(Path(setupLogPath).parent), exist_ok=True)
     fh = logging.FileHandler(setupLogPath)
     fh.setFormatter(formatter)
     logger.addHandler(fh)
