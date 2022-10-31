@@ -19,17 +19,17 @@ services:
       - logs:/var/log
     networks:
       - redis
-    cap_add:
-      - SYS_PTRACE
   consumer:
     build:
       context: ./src
       dockerfile: ../consumer.dockerfile
-    entrypoint: 'celery -A test worker --loglevel INFO'
+    entrypoint: 'celery -A test worker --loglevel INFO -c 4'
     volumes:
       - logs:/var/log
     networks:
       - redis
+    cap_add:
+      - SYS_PTRACE
 
 networks:
   redis:
