@@ -1,5 +1,6 @@
 from celery import Celery
 from celery.signals import after_setup_logger
+from shared.logging import loggingWrapper
 import os
 import logging
 
@@ -13,6 +14,8 @@ def createApp(name, brokerUrl, backendUrl, logPath):
 @after_setup_logger.connect
 def setup_loggers(logger, **kwargs):
     global setupLogPath
+
+    loggingWrapper.setupCustom(logger)
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     
     os.makedirs(str(Path(path).parent), exist_ok=True)

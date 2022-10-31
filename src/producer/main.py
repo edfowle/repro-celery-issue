@@ -1,5 +1,5 @@
 from shared.logging import loggingWrapper
-loggingWrapper.setup('/var/log/repro_celeryissue/producer.log')
+loggingWrapper.setupFile('/var/log/repro_celeryissue/producer.log')
 
 from shared.tasks import test
 
