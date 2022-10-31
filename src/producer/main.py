@@ -2,6 +2,14 @@ from shared.logging import loggingWrapper
 loggingWrapper.setup('/var/log/repro_celeryissue/producer.log')
 
 from shared.tasks import test
-loggingWrapper.logger.info('queueing task')
-result = test.add.delay(66,4)
-loggingWrapper.logger.info('task queued')
+
+n = 10000
+
+loggingWrapper.logger.info(f'queueing {n} tasks')
+
+i = 0
+while i < n:
+  result = test.process.delay(n)
+  i += 1
+
+loggingWrapper.logger.info('tasks queued')
